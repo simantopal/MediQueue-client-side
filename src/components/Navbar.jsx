@@ -1,3 +1,4 @@
+import { Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -18,8 +19,8 @@ const Navbar = () => {
                         <li><Link href={"/my-session"}>My Booked Sessions</Link></li>
                     </ul>
                     <ul className="flex gap-3">
-                        <li><Link href={"/login"}>Login</Link></li>
-                        <li><Link href={"/signup"}>Signup</Link></li>
+                        <li><Link href={"/login"}><Button className={'bg-blue-600 rounded'}>Login</Button></Link></li>
+                        <li><Link href={"/signup"}><Button variant="outline" className={'rounded'}>Signup</Button></Link></li>
                     </ul>
                 </nav>
             </div>

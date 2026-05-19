@@ -1,4 +1,5 @@
-import { Button, Card, CloseButton } from '@heroui/react';
+import { BookSessionModal } from '@/components/BookSessionModal';
+import { Card, } from '@heroui/react';
 import Image from 'next/image';
 import React from 'react';
 
@@ -7,7 +8,7 @@ const TutorDetailsPage = async ({ params }) => {
     const res = await fetch(`http://localhost:5000/tutor/${id}`)
     const tutor = await res.json()
 
-    const { tutorName, imageUrl, subject, dayAndTime, departureDate, fee, institution } = tutor;
+    const { tutorName, imageUrl, subject, dayAndTime, departureDate, fee, institution, location, slot, experience } = tutor;
 
     return (
         <div className="container mx-auto my-15">
@@ -24,45 +25,45 @@ const TutorDetailsPage = async ({ params }) => {
                 </div>
 
                 {/* Right Side Content */}
-                <div className="flex flex-col gap-5">
+                <div className="flex flex-col gap-5 py-10">
                     <Card.Header className="p-0 flex flex-col items-start gap-3">
                         <Card.Title className="text-3xl font-bold">
                             {tutorName}
                         </Card.Title>
 
                         <Card.Description className="text-base text-gray-500">
-                            Experienced {subject} tutor with interactive teaching methods.
+                           {subject}
                         </Card.Description>
                     </Card.Header>
 
                     <div className="space-y-3">
                         <p>
-                            <span className="font-semibold">Subject:</span> {subject}
+                            <span className="font-semibold">Institution:</span> {institution}
                         </p>
                         <p>
-                            <span className="font-semibold">Institution:</span>{" "}{institution}
+                            <span className="font-semibold">Experience:</span> {experience}
                         </p>
-
                         <p>
-                            <span className="font-semibold">Schedule:</span>{" "}
-                            {dayAndTime}
+                            <span className="font-semibold">Location:</span> {location}
                         </p>
 
                         <p>
-                            <span className="font-semibold">Session Start:</span>{" "}
-                            {departureDate}
+                            <span className="font-semibold">Available & Time Slot:</span> {dayAndTime}
                         </p>
 
                         <p>
-                            <span className="font-semibold">Fee:</span> ৳{fee}
+                            <span className="font-semibold">Remaining Slot:</span> {slot}
+                        </p>
+
+                        <p>
+                            <span className="font-semibold">Hourly Fee:</span> ৳{fee}
+                        </p>
+                        <p>
+                            <span className="font-semibold">Session Start Date:</span> {departureDate}
                         </p>
                     </div>
 
-                    <Card.Footer className="p-0 pt-4">
-                        <Button variant='ghost' className="rounded-xl border">
-                            Apply Now
-                        </Button>
-                    </Card.Footer>
+                    <BookSessionModal tutor={tutor} />
                 </div>
             </Card>
         </div>

@@ -29,12 +29,10 @@ const TutorCard = ({ tutor }) => {
 
                     <div className="space-y-1 text-sm">
                         <p>
-                            <span className="font-semibold">Available:</span>{" "}
-                            {dayAndTime}
+                            <span className="font-semibold">Available:</span> {dayAndTime}
                         </p>
                         <p>
-                            <span className="font-semibold">Session Start Date:</span>{" "}
-                            {departureDate}
+                            <span className="font-semibold">Session Start Date:</span> {departureDate}
                         </p>
                         <p>
                             <span className="font-semibold">Fee:</span> ৳{fee}/hr

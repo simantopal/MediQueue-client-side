@@ -10,7 +10,7 @@ const TutorCard = ({ tutor }) => {
             <Card className='shadow-md hover:shadow-xl border'>
                 <div>
                     <Image
-                        alt={tutorName}
+                        alt={'tutorName'}
                         src={imageUrl}
                         width={500}
                         height={300}

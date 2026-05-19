@@ -10,6 +10,14 @@ const TutorDetailsPage = async ({ params }) => {
 
     const { tutorName, imageUrl, subject, dayAndTime, departureDate, fee, institution, location, slot, experience } = tutor;
 
+    const today = new Date();
+    const sessionDate = new Date(departureDate);
+
+    const isDateAllowed = today >= sessionDate;
+    const isSlotsAvailable = slot > 0;
+
+    const canBook = isDateAllowed && isSlotsAvailable;
+
     return (
         <div className="container mx-auto my-15">
             <Card className="grid grid-cols-1 md:grid-cols-2 gap-6 border rounded-2xl p-5 items-center">
@@ -32,7 +40,7 @@ const TutorDetailsPage = async ({ params }) => {
                         </Card.Title>
 
                         <Card.Description className="text-base text-gray-500">
-                           {subject}
+                            {subject}
                         </Card.Description>
                     </Card.Header>
 
@@ -63,7 +71,14 @@ const TutorDetailsPage = async ({ params }) => {
                         </p>
                     </div>
 
-                    <BookSessionModal tutor={tutor} />
+                    {!canBook && (
+                        <p className="text-red-500 font-medium">
+                            {!isDateAllowed
+                                ? "Booking is not available yet for this tutor"
+                                : "No available slots left"}
+                        </p>
+                    )}
+                    <BookSessionModal tutor={tutor} disabled={!canBook} />
                 </div>
             </Card>
         </div>

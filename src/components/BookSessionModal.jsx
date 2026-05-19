@@ -1,29 +1,33 @@
 "use client";
 
 import { Button, Card, Input, Label, Modal, Surface, TextField } from "@heroui/react";
+import { toast } from "react-toastify";
 
-export function BookSessionModal({tutor}) {
-    const { _id, tutorName, imageUrl, subject, dayAndTime, departureDate, fee, institution, location, slot, experience } = tutor;
+export function BookSessionModal({ tutor, disabled }) {
+    const { _id, tutorName } = tutor;
 
     const onSubmit = async (e) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
-        const tutor = Object.fromEntries(formData.entries())
+        const bookingData = Object.fromEntries(formData.entries())
 
+        console.log(bookingData)
 
-        // const res = await fetch('http://localhost:5000/tutor', {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(tutor)
-        // })
-        // const data = await res.json()
+        const res = await fetch('http://localhost:5000/bookings', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(bookingData)
+        })
 
-        // if(res.ok){
-        //     toast.success('Tutor added successfully!')
-        // }
+        const data = await res.json();
 
+        if (res.ok) {
+            toast.success('Booking successful!')
+        }
+
+        console.log(data)
     }
     return (
         <Modal>
@@ -47,12 +51,12 @@ export function BookSessionModal({tutor}) {
                                         <Label>Name:</Label>
                                         <Input placeholder="Enter your name" />
                                     </TextField>
-                                    
+
                                     <TextField className="w-full" name="phone" type="tel">
                                         <Label>Phone:</Label>
                                         <Input placeholder="Enter your phone number" />
                                     </TextField>
-                                    <TextField defaultValue={_id} className="w-full" name="" type="text">
+                                    <TextField defaultValue={_id} className="w-full" name="tutorId" type="text">
                                         <Label>Tutor Id:</Label>
                                         <Input placeholder="Enter your tutor name" />
                                     </TextField>
@@ -64,16 +68,17 @@ export function BookSessionModal({tutor}) {
                                         <Label>Student Email:</Label>
                                         <Input placeholder="Enter your email" />
                                     </TextField>
-                                    
+
+                                    <Modal.Footer className="mt-5">
+                                        <Button slot="close" variant="secondary">
+                                            Cancel
+                                        </Button>
+                                        <Button type="submit" slot="close">Confirm Booking</Button>
+                                    </Modal.Footer>
                                 </form>
                             </Surface>
                         </Modal.Body>
-                        <Modal.Footer>
-                            <Button slot="close" variant="secondary">
-                                Cancel
-                            </Button>
-                            <Button type="submit" slot="close">Confirm Booking</Button>
-                        </Modal.Footer>
+
                     </Modal.Dialog>
                 </Modal.Container>
             </Modal.Backdrop>

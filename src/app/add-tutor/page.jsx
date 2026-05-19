@@ -145,7 +145,7 @@ const AddTutorPage = () => {
 
               {/* institution Name */}
               <div className="md:col-span-2">
-                <TextField name="destinationName" isRequired>
+                <TextField name="institution" isRequired>
                   <Label>Institution</Label>
                   <Input placeholder="Dhaka university" className="rounded-2xl" />
                   <FieldError />
@@ -179,15 +179,15 @@ const AddTutorPage = () => {
                   </Select.Trigger>
                   <Select.Popover>
                     <ListBox>
-                      <ListBox.Item id="Beach" textValue="Beach">
+                      <ListBox.Item id="online" textValue="Beach">
                         Online
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="Mountain" textValue="Mountain">
+                      <ListBox.Item id="offline" textValue="Mountain">
                         Offline
                         <ListBox.ItemIndicator />
                       </ListBox.Item>
-                      <ListBox.Item id="City" textValue="City">
+                      <ListBox.Item id="both" textValue="City">
                         Both
                         <ListBox.ItemIndicator />
                       </ListBox.Item>        

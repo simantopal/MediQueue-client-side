@@ -1,19 +1,19 @@
+import TutorCard from '@/components/TutorCard';
 import React from 'react';
 
 const TutorPage = async() => {
     const res = await fetch('http://localhost:5000/tutor')
-    const tutor = await res.json()
+    const tutors = await res.json()
 
     return (
         <div>
-            <h1>All tutors</h1>
-            <div>
+            <h1 className='flex items-center justify-center my-10 font-semibold text-3xl text-blue-900'>All tutors</h1>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 container mx-auto gap-6 mb-15'>
                 {
-                    tutor.map(tutor => <div key={tutor._id}>
-                        {tutor.tutorName}
-                    </div>)
+                    tutors?.map(tutor => <TutorCard key={tutor._id} tutor={tutor} />)
                 }
             </div>
+            
         </div>
     );
 };

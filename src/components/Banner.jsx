@@ -39,7 +39,7 @@ const Banner = () => {
             images.map((img, index) => (
               <div
                 key={index}
-                className="relative min-w-full h-[500px]"
+                className="relative min-w-full h-125"
               >
                 <Image
                   src={img}

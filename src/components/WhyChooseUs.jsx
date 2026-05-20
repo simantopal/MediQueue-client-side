@@ -2,7 +2,7 @@ import React from 'react';
 
 const WhyChooseUs = () => {
     return (
-        <div className="container mx-auto my-15 bg-gray-300">
+        <div className="container mx-auto my-15">
             <h2 className="text-3xl font-bold text-center text-blue-900">
                 Why Choose MediQueue?
             </h2>

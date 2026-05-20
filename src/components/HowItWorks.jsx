@@ -12,7 +12,7 @@ const HowItWorks = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-5">
 
                 <div className="p-6 border rounded-xl text-center bg-gray-100">
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-blue-500 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">
+                    <span className="text-blue-500 w-8 h-8 rounded-full text-center text-sm font-bold">
                         01
                     </span>
                     <h3 className="font-bold mt-4 mb-2">Search Tutor</h3>
@@ -22,7 +22,7 @@ const HowItWorks = () => {
                 </div>
 
                 <div className="p-6 border rounded-xl text-center bg-gray-100">
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-blue-500 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">
+                    <span className="text-blue-500 w-8 h-8 rounded-full text-sm font-bold">
                         02
                     </span>
                     <h3 className="font-bold mt-4 mb-2">Select Slot</h3>
@@ -32,7 +32,7 @@ const HowItWorks = () => {
                 </div>
 
                 <div className="p-6 border rounded-xl text-center bg-gray-100">
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-blue-500 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">
+                    <span className="text-blue-500 w-8 h-8 rounded-full text-sm font-bold">
                         03
                     </span>
                     <h3 className="font-bold mt-4 mb-2">Book Session</h3>
@@ -42,7 +42,7 @@ const HowItWorks = () => {
                 </div>
 
                 <div className="p-6 border rounded-xl text-center bg-gray-100">
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-blue-500 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">
+                    <span className="text-blue-500 w-8 h-8 rounded-full text-sm font-bold">
                         04
                     </span>
                     <h3 className="font-bold mt-4 mb-2">Start Learning</h3>

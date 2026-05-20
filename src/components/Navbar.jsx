@@ -4,6 +4,7 @@ import { authClient } from "@/lib/auth-client";
 import { Avatar, Button } from "@heroui/react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import ThemeToggle from "./ThemeToggle";
 
 
 const Navbar = () => {
@@ -29,6 +30,8 @@ const Navbar = () => {
                         <li><Link href={"/my-session"}>My Booked Sessions</Link></li>
                     </ul>
                     <ul className="flex gap-3 items-center">
+
+                        <ThemeToggle />
                         <li><Link href={"/profile"}>Profile</Link></li>
                         {isLoading ? (
                             <li className="text-sm text-gray-500">Loading...</li>

@@ -4,7 +4,7 @@ import { headers } from 'next/headers';
 import BookingDelete from '@/components/BookingDelete';
 
 export const metadata = {
-  title: "My Booked Session",
+    title: "My Booked Session",
 };
 
 const MyBookedSessionPage = async () => {
@@ -64,17 +64,21 @@ const MyBookedSessionPage = async () => {
                                                     <span
                                                         className={`px-3 py-1 rounded-full text-xs font-semibold ${booking.status === "confirmed"
                                                                 ? "bg-green-100 text-green-600"
-                                                                : "bg-red-100 text-red-600"
+                                                                : booking.status === "cancelled"
+                                                                    ? "bg-red-200 text-red-700"
+                                                                    : "bg-gray-100 text-gray-600"
                                                             }`}
                                                     >
-                                                        {booking.status}
+                                                        {booking.status === "cancelled"
+                                                            ? "Cancelled"
+                                                            : booking.status}
                                                     </span>
                                                 </td>
 
                                                 <td>
 
                                                     <BookingDelete bookingId={booking._id} />
-                                                    
+
                                                 </td>
                                             </tr>
                                         ))

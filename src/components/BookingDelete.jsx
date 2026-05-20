@@ -4,7 +4,7 @@ import { AlertDialog, Button } from "@heroui/react";
 const BookingDelete = ({bookingId}) => {
     const handleDeleteBooking = async() =>{
         const res = await fetch(`http://localhost:5000/bookings/${bookingId}`, {
-            method: "DELETE",
+            method: "PATCH",
             headers: {
                 "content-type" : "application/json"
             }

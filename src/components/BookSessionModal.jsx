@@ -88,21 +88,18 @@ export function BookSessionModal({ tutor, disabled }) {
                             <Surface variant="default">
                                 <form onSubmit={onSubmit} className="flex flex-col gap-4">
 
-                                    {/* User Name */}
                                     <TextField className="w-full" name="name" type="text">
                                         <Label>Name:</Label>
 
                                         <Input placeholder="Enter your name" />
                                     </TextField>
 
-                                    {/* Phone */}
                                     <TextField className="w-full" name="phone" type="tel">
                                         <Label>Phone:</Label>
 
                                         <Input placeholder="Enter your phone number" />
                                     </TextField>
 
-                                    {/* Tutor Id */}
                                     <TextField
                                         className="w-full"
                                         name="tutorId"
@@ -116,7 +113,6 @@ export function BookSessionModal({ tutor, disabled }) {
                                         />
                                     </TextField>
 
-                                    {/* Tutor Name */}
                                     <TextField
                                         className="w-full"
                                         name="tutorName"
@@ -130,7 +126,6 @@ export function BookSessionModal({ tutor, disabled }) {
                                         />
                                     </TextField>
 
-                                    {/* Student Email */}
                                     <TextField
                                         className="w-full"
                                         name="email"

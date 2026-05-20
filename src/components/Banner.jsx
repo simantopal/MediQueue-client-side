@@ -27,7 +27,6 @@ const Banner = () => {
   return (
     <div className="grid md:grid-cols-2 container mx-auto my-10 gap-5">
 
-      {/* Left Image Slider */}
       <div className="relative overflow-hidden rounded-3xl">
 
         <div
@@ -56,7 +55,6 @@ const Banner = () => {
 
       </div>
 
-      {/* Right Content */}
       <div className="flex flex-col justify-center px-10 md:px-20 bg-slate-900 text-white gap-6 rounded-3xl">
 
         <h1 className="text-5xl font-bold leading-tight">

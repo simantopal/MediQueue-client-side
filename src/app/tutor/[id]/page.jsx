@@ -3,6 +3,10 @@ import { Card, } from '@heroui/react';
 import Image from 'next/image';
 import React from 'react';
 
+export const metadata = {
+  title: "All Tutor Details",
+};
+
 const TutorDetailsPage = async ({ params }) => {
     const { id } = await params
     const res = await fetch(`http://localhost:5000/tutor/${id}`)
@@ -32,7 +36,6 @@ const TutorDetailsPage = async ({ params }) => {
                     />
                 </div>
 
-                {/* Right Side Content */}
                 <div className="flex flex-col gap-5 py-10">
                     <Card.Header className="p-0 flex flex-col items-start gap-3">
                         <Card.Title className="text-3xl font-bold">

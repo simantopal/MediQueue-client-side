@@ -3,6 +3,10 @@ import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import BookingDelete from '@/components/BookingDelete';
 
+export const metadata = {
+  title: "My Booked Session",
+};
+
 const MyBookedSessionPage = async () => {
     const session = await auth.api.getSession({
         headers: await headers()

@@ -11,9 +11,7 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Grid Section */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-          {/* Newsletter */}
           <div>
             <h3 className="text-white mb-3 tracking-wide">NEWSLETTER</h3>
             <p className="mb-4 text-sm">
@@ -30,7 +28,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h3 className="text-white mb-3 tracking-wide">QUICK LINKS</h3>
             <ul className="space-y-2">
@@ -41,7 +38,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Support */}
           <div>
             <h3 className="text-white mb-3 tracking-wide">SUPPORT</h3>
             <ul className="space-y-2">
@@ -54,8 +50,6 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-
-          {/* Contact */}
           <div>
             <h3 className="text-white mb-3 tracking-wide">CONTACT US</h3>
             <ul className="space-y-2">
@@ -65,7 +59,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Section */}
         <div className="border-t border-gray-800 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm">
             © 2026 Wanderlust. All rights reserved.

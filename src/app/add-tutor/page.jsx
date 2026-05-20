@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { authClient } from '@/lib/auth-client';
 
+
 const AddTutorPage = () => {
     const router = useRouter();
     const { data: session, isLoading } = authClient.useSession();
@@ -55,7 +56,6 @@ const AddTutorPage = () => {
             <form onSubmit={onSubmit} className="p-10 space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-                    {/* tutorName */}
                     <div className="md:col-span-2">
                         <TextField name="tutorName" isRequired>
                             <Label>Tutor Name</Label>
@@ -64,7 +64,6 @@ const AddTutorPage = () => {
                         </TextField>
                     </div>
 
-                    {/* Image URL */}
                     <div className="md:col-span-2">
                         <TextField name="imageUrl" isRequired>
                             <Label>Image URL</Label>
@@ -77,14 +76,12 @@ const AddTutorPage = () => {
                         </TextField>
                     </div>
 
-                    {/* Location */}
                     <TextField name="location" isRequired>
                         <Label>Location (Area/City)</Label>
                         <Input placeholder="Dhaka" className="rounded-2xl" />
                         <FieldError />
                     </TextField>
 
-                    {/* Subject */}
                     <div>
                         <Select
                             name="subject"
@@ -125,14 +122,12 @@ const AddTutorPage = () => {
                         </Select>
                     </div>
 
-                    {/* Fee */}
                     <TextField name="fee" type="number" isRequired>
                         <Label>Hourly fee</Label>
                         <Input type="number" placeholder="550" className="rounded-2xl" />
                         <FieldError />
                     </TextField>
 
-                    {/* Time */}
                     <TextField name="dayAndTime" isRequired>
                         <Label>Available Days and time</Label>
                         <Input
@@ -142,7 +137,6 @@ const AddTutorPage = () => {
                         <FieldError />
                     </TextField>
 
-                    {/* Slot */}
                     <div className="md:col-span-2">
                         <TextField name="slot" type="number" isRequired>
                             <Label>Total slot</Label>
@@ -151,7 +145,6 @@ const AddTutorPage = () => {
                         </TextField>
                     </div>
 
-                    {/* Date */}
                     <div className="md:col-span-2">
                         <TextField name="departureDate" type="date" isRequired>
                             <Label>Session Start Date</Label>
@@ -160,7 +153,6 @@ const AddTutorPage = () => {
                         </TextField>
                     </div>
 
-                    {/* Institution */}
                     <div className="md:col-span-2">
                         <TextField name="institution" isRequired>
                             <Label>Institution</Label>
@@ -169,7 +161,6 @@ const AddTutorPage = () => {
                         </TextField>
                     </div>
 
-                    {/* Experience */}
                     <div className="md:col-span-2">
                         <TextField name="experience" isRequired>
                             <Label>Experience</Label>
@@ -181,8 +172,6 @@ const AddTutorPage = () => {
                         </TextField>
                     </div>
                 </div>
-
-                {/* Teaching Mode */}
                 <div>
                     <Select
                         name="teachingMode"
@@ -214,8 +203,6 @@ const AddTutorPage = () => {
                         </Select.Popover>
                     </Select>
                 </div>
-
-                {/* Button */}
                 <Button
                     type="submit"
                     variant="outline"

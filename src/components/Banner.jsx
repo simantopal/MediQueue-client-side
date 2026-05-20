@@ -1,6 +1,7 @@
 'use client'
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Banner = () => {
@@ -24,7 +25,7 @@ const Banner = () => {
   }, []);
 
   return (
-      <div className="grid md:grid-cols-2 container mx-auto my-10 gap-5">
+    <div className="grid md:grid-cols-2 container mx-auto my-10 gap-5">
 
       {/* Left Image Slider */}
       <div className="relative overflow-hidden rounded-3xl">
@@ -69,9 +70,11 @@ const Banner = () => {
         </p>
 
         <div>
-          <button className="bg-cyan-500 hover:bg-cyan-600 transition px-6 py-3 rounded-md font-semibold">
-            Explore Tutors
-          </button>
+          <Link href="/tutor">
+            <button className="bg-cyan-500 hover:bg-cyan-600 transition px-6 py-3 rounded-md font-semibold">
+              Explore Tutors
+            </button>
+          </Link>
         </div>
 
       </div>

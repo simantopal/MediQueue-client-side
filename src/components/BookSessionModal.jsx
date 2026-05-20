@@ -1,9 +1,12 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { Button, Card, Input, Label, Modal, Surface, TextField } from "@heroui/react";
 import { toast } from "react-toastify";
 
 export function BookSessionModal({ tutor, disabled }) {
+    const { data: session } = authClient.useSession()
+        const user = session?.user
     const { _id, tutorName } = tutor;
 
     const onSubmit = async (e) => {
@@ -12,6 +15,8 @@ export function BookSessionModal({ tutor, disabled }) {
         const bookingData = Object.fromEntries(formData.entries())
 
         console.log(bookingData)
+
+    
 
         const res = await fetch('http://localhost:5000/bookings', {
             method: 'POST',

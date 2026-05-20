@@ -78,7 +78,9 @@ const TutorDetailsPage = async ({ params }) => {
                                 : "No available slots left"}
                         </p>
                     )}
-                    <BookSessionModal tutor={tutor} disabled={!canBook} />
+                    <BookSessionModal tutor={tutor}
+                        disabled={!canBook}
+                         />
                 </div>
             </Card>
         </div>

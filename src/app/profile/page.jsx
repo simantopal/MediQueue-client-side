@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { authClient } from '@/lib/auth-client';
 
-const MyBookedSessionPage = () => {
+const ProfilePage = () => {
     const router = useRouter();
     const { data: session, isLoading } = authClient.useSession();
 
@@ -28,9 +28,9 @@ const MyBookedSessionPage = () => {
 
     return (
         <div>
-            MyBookedSessionPage
+            Profile Page Content
         </div>
     );
 };
 
-export default MyBookedSessionPage;
+export default ProfilePage;

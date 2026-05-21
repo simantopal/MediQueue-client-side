@@ -11,13 +11,21 @@ const MyBookedSessionPage = async () => {
     const session = await auth.api.getSession({
         headers: await headers()
     })
+    const { token } = await auth.api.getToken({
+        headers: await headers()
+    })
+
     const user = session?.user
 
     if (!session?.user) {
         redirect("/login");
     }
 
-    const res = await fetch(`http://localhost:5000/bookings/${user?.id}`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings/${user?.id}`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    })
 
     const bookings = await res.json()
 
@@ -63,10 +71,10 @@ const MyBookedSessionPage = async () => {
                                                 <td>
                                                     <span
                                                         className={`px-3 py-1 rounded-full text-xs font-semibold ${booking.status === "confirmed"
-                                                                ? "bg-green-100 text-green-600"
-                                                                : booking.status === "cancelled"
-                                                                    ? "bg-red-200 text-red-700"
-                                                                    : "bg-gray-100 text-gray-600"
+                                                            ? "bg-green-100 text-green-600"
+                                                            : booking.status === "cancelled"
+                                                                ? "bg-red-200 text-red-700"
+                                                                : "bg-gray-100 text-gray-600"
                                                             }`}
                                                     >
                                                         {booking.status === "cancelled"

@@ -36,11 +36,11 @@ const LoginPage = () => {
     return (
         <div className='max-w-md mx-auto my-15'>
             <Card className='border shadow rounded-2xl p-8'>
-                <h1 className='text-center text-3xl font-semibold mb-2'>
+                <h1 className='text-center text-3xl font-semibold mb-1'>
                     Login
                 </h1>
 
-                <p className='text-center mb-8 text-gray-500'>
+                <p className='text-center mb-2 text-gray-500'>
                     Welcome back! please login to continue
                 </p>
 
@@ -95,7 +95,7 @@ const LoginPage = () => {
                         </Button>
                     </div>
                 </Form>
-                <div className="flex items-center gap-4 my-4">
+                <div className="flex items-center gap-4">
                     <div className="flex-1 border-t"></div>
 
                     <span className="text-sm text-gray-500 font-medium">
@@ -104,10 +104,10 @@ const LoginPage = () => {
 
                     <div className="flex-1 border-t"></div>
                 </div>
-                <div className='mb-5'>
+                <div>
                     <Button onClick={handleGoogleSignin} variant='ghost' className={'w-full border rounded-xl'}><FcGoogle />Sign in with Google</Button>
                 </div>
-                <div className="text-center text-sm mt-4">
+                <div className="text-center text-sm mt-1">
                     Dont have an account?{" "}
 
                     <Link

@@ -20,7 +20,7 @@ const SignUpPage = () => {
             image: user.image
         })
         if (data) {
-            redirect("/")
+            redirect("/login")
         }
         if (error) {
             toast.error(error.message || "Something went wrong");
@@ -35,11 +35,11 @@ const SignUpPage = () => {
     return (
         <div className='max-w-md mx-auto my-15'>
             <Card className='border shadow rounded-2xl p-8'>
-                <h1 className='text-center text-3xl font-semibold mb-2'>
+                <h1 className='text-center text-3xl font-semibold'>
                     Register
                 </h1>
 
-                <p className='text-center mb-8 text-gray-500'>
+                <p className='text-center mb-3 text-gray-500'>
                     Create your account to start learning
                 </p>
 
@@ -113,7 +113,7 @@ const SignUpPage = () => {
                         </Button>
                     </div>
                 </Form>
-                <div className="flex items-center gap-4 my-4">
+                <div className="flex items-center gap-4">
                     <div className="flex-1 border-t"></div>
 
                     <span className="text-sm text-gray-500 font-medium">

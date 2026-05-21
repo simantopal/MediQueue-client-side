@@ -19,35 +19,20 @@ const TutorCard = ({ tutor }) => {
                 </div>
 
                 <Card.Header className="flex items-start gap-2 p-3">
-                    <Card.Title className="text-xl font-bold">
-                        {tutorName}
-                    </Card.Title>
+                    <Card.Title className="text-xl font-bold">{tutorName}</Card.Title>
 
-                    <Card.Description className="text-sm text-gray-500">
-                        Subject: {subject}
-                    </Card.Description>
+                    <Card.Description className="text-sm text-gray-500">Subject: {subject}</Card.Description>
 
                     <div className="space-y-1 text-sm">
-                        <p>
-                            <span className="font-semibold">Available:</span> {dayAndTime}
-                        </p>
-                        <p>
-                            <span className="font-semibold">Session Start Date:</span> {departureDate}
-                        </p>
-                        <p>
-                            <span className="font-semibold">Fee:</span> ৳{fee}/hr
-                        </p>
+                        <p><span className="font-semibold">Available:</span> {dayAndTime}</p>
+                        <p><span className="font-semibold">Session Start Date:</span> {departureDate}</p>
+                        <p><span className="font-semibold">Fee:</span> ৳{fee}/hr</p>
                     </div>
                 </Card.Header>
 
                 <Card.Footer className="p-5 pt-0">
                     <Link href={`/tutor/${_id}`} className="block w-full">
-                        <Button
-                            fullWidth
-                            className="rounded-xl bg-cyan-800 hover:bg-cyan-700 text-white"
-                        >
-                            Book Session
-                        </Button>
+                        <Button fullWidth className="rounded-xl bg-cyan-800 hover:bg-cyan-700 text-white">Book Session</Button>
                     </Link>
                 </Card.Footer>
             </Card>

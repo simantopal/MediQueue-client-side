@@ -25,27 +25,48 @@ const AddTutorPage = () => {
     }
 
     const onSubmit = async (e) => {
-        e.preventDefault();
+    e.preventDefault();
 
-        const formData = new FormData(e.currentTarget);
-        const tutor = Object.fromEntries(formData.entries());
+    const formData = new FormData(e.currentTarget);
 
-        const res = await fetch('http://localhost:5000/tutor', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(tutor)
-        });
+    // 🔥 FIX: manual object instead of Object.fromEntries
+    const tutor = {
+        tutorName: formData.get("tutorName"),
+        imageUrl: formData.get("imageUrl"),
+        location: formData.get("location"),
+        subject: formData.get("subject"),
 
-        const data = await res.json();
+        // 🔥 IMPORTANT FIX (string → number)
+        fee: Number(formData.get("fee")),
+        slot: Number(formData.get("slot")),
 
-        if (res.ok) {
-            toast.success('Tutor added successfully!');
-        } else {
-            toast.error('Failed to add tutor');
-        }
+        dayAndTime: formData.get("dayAndTime"),
+        departureDate: formData.get("departureDate"),
+        institution: formData.get("institution"),
+        experience: formData.get("experience"),
+        teachingMode: formData.get("teachingMode"),
     };
+
+    const { data: tokenData } = await authClient.token();
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutor`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            authorization: `Bearer ${tokenData?.token}`
+        },
+        body: JSON.stringify(tutor)
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+        toast.success('Tutor added successfully!');
+        e.target.reset(); // optional but good
+    } else {
+        toast.error('Failed to add tutor');
+    }
+};
 
     return (
         <div className='container mx-auto border m-8 shadow rounded-2xl max-w-5xl'>

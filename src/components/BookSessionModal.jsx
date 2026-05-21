@@ -2,157 +2,151 @@
 
 import { authClient } from "@/lib/auth-client";
 import {
-    Button,
-    Card,
-    Input,
-    Label,
-    Modal,
-    Surface,
-    TextField,
+  Button,
+  Input,
+  Label,
+  Modal,
+  Surface,
+  TextField,
+  Card,
 } from "@heroui/react";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 export function BookSessionModal({ tutor, disabled }) {
-    const { data: session } = authClient.useSession();
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+  const router = useRouter();
 
-    const user = session?.user;
+  const { _id, tutorName } = tutor;
 
-    const { _id, tutorName } = tutor;
+  const onSubmit = async (e) => {
+    e.preventDefault();
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
+    try {
+      const formData = new FormData(e.currentTarget);
 
-        const formData = new FormData(e.currentTarget);
+      const tokenData = await authClient.token();
 
-        const bookingData = {
-            userId: user?.id,
-            userName: formData.get("name"),
-            userEmail: formData.get("email"),
-            userPhone: formData.get("phone"),
-            tutorId: _id,
-            tutorName: tutorName,
-            status: "confirmed",
-        };
+      const token = tokenData?.data?.token;
 
-        try {
-            const res = await fetch("http://localhost:5000/bookings", {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json",
-                },
-                body: JSON.stringify(bookingData),
-            });
+      if (!token) {
+        toast.error("Please login first");
+        return;
+      }
 
-            const data = await res.json();
+      const bookingData = {
+        userId: user?.id,
+        userName: formData.get("name"),
+        userEmail: user?.email,
+        userPhone: formData.get("phone"),
+        tutorId: _id,
+        tutorName,
+        status: "confirmed",
+      };
 
-            if (res.ok) {
-                toast.success("Booking successful!");
-                console.log(data);
-            } else {
-                toast.error("Booking failed!");
-            }
-        } catch (error) {
-            console.log(error);
-            toast.error("Something went wrong!");
-        }
-    };
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(bookingData),
+      });
 
-    return (
-        <Modal>
-            <Card.Footer className="p-0 pt-2">
-                <Button
-                    disabled={disabled}
-                    variant="ghost"
-                    className="rounded-xl border"
-                >
-                    Book Session
-                </Button>
-            </Card.Footer>
+      const data = await res.json();
 
-            <Modal.Backdrop>
-                <Modal.Container placement="auto">
-                    <Modal.Dialog className="sm:max-w-md">
-                        <Modal.CloseTrigger />
+      console.log("STATUS:", res.status);
+      console.log("DATA:", data);
 
-                        <Modal.Header className="flex text-center">
-                            <Modal.Heading className="text-2xl">
-                                Book Session
-                            </Modal.Heading>
+      if (res.ok && data.success) {
+        toast.success(data.message);
+        router.refresh();
+      } else {
+        toast.error(data.message || "Booking failed");
+      }
 
-                            <p className="mt-1 text-sm text-muted">
-                                Fill up the form to confirm your booking.
-                            </p>
-                        </Modal.Header>
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong!");
+    }
+  };
 
-                        <Modal.Body className="p-6">
-                            <Surface variant="default">
-                                <form onSubmit={onSubmit} className="flex flex-col gap-4">
+  return (
+    <Modal>
+      <Card.Footer className="p-0 pt-2">
+        <Modal.Trigger>
+          <Button
+            variant="ghost"
+            disabled={disabled}
+            className="rounded-xl border"
+          >
+            Book Session
+          </Button>
+        </Modal.Trigger>
+      </Card.Footer>
 
-                                    <TextField className="w-full" name="name" type="text">
-                                        <Label>Name:</Label>
+      <Modal.Backdrop>
+        <Modal.Container placement="center">
+          <Modal.Dialog className="sm:max-w-md">
 
-                                        <Input placeholder="Enter your name" />
-                                    </TextField>
+            <Modal.CloseTrigger />
 
-                                    <TextField className="w-full" name="phone" type="tel">
-                                        <Label>Phone:</Label>
+            <Modal.Header>
+              <Modal.Heading>Book Session</Modal.Heading>
+              <p className="text-sm text-gray-500">
+                Fill up the form to confirm booking
+              </p>
+            </Modal.Header>
 
-                                        <Input placeholder="Enter your phone number" />
-                                    </TextField>
+            <Modal.Body>
+              <Surface>
+                <form onSubmit={onSubmit} className="flex flex-col gap-4">
 
-                                    <TextField
-                                        className="w-full"
-                                        name="tutorId"
-                                        type="text"
-                                    >
-                                        <Label>Tutor Id:</Label>
+                  <TextField name="name">
+                    <Label>Name</Label>
+                    <Input placeholder="Enter your name" />
+                  </TextField>
 
-                                        <Input
-                                            value={_id}
-                                            readOnly
-                                        />
-                                    </TextField>
+                  <TextField name="phone">
+                    <Label>Phone</Label>
+                    <Input placeholder="Enter phone number" />
+                  </TextField>
 
-                                    <TextField
-                                        className="w-full"
-                                        name="tutorName"
-                                        type="text"
-                                    >
-                                        <Label>Tutor Name:</Label>
+                  <TextField>
+                    <Label>Tutor Id</Label>
+                    <Input value={_id} readOnly />
+                  </TextField>
 
-                                        <Input
-                                            value={tutorName}
-                                            readOnly
-                                        />
-                                    </TextField>
+                  <TextField>
+                    <Label>Tutor Name</Label>
+                    <Input value={tutorName} readOnly />
+                  </TextField>
 
-                                    <TextField
-                                        className="w-full"
-                                        name="email"
-                                        type="email"
-                                    >
-                                        <Label>Student Email:</Label>
+                  <TextField>
+                    <Label>Email</Label>
+                    <Input value={user?.email || ""} readOnly />
+                  </TextField>
 
-                                        <Input
-                                            value={user?.email || ""}
-                                            readOnly
-                                        />
-                                    </TextField>
-                                    <Modal.Footer className="mt-5">
-                                        <Button slot="close" variant="secondary">
-                                            Cancel
-                                        </Button>
+                  <div className="flex justify-end gap-2 mt-4">
 
-                                        <Button type="submit" slot="close">
-                                            Confirm Booking
-                                        </Button>
-                                    </Modal.Footer>
-                                </form>
-                            </Surface>
-                        </Modal.Body>
-                    </Modal.Dialog>
-                </Modal.Container>
-            </Modal.Backdrop>
-        </Modal>
-    );
+                    <Button slot="close" variant="secondary">
+                      Cancel
+                    </Button>
+
+                    <Button type="submit">
+                      Confirm Booking
+                    </Button>
+
+                  </div>
+
+                </form>
+              </Surface>
+            </Modal.Body>
+
+          </Modal.Dialog>
+        </Modal.Container>
+      </Modal.Backdrop>
+    </Modal>
+  );
 }

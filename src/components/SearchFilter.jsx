@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const SearchFilter = ({ search, startDate, endDate }) => {
+
   const router = useRouter();
 
   const [searchText, setSearchText] = useState(search || "");
@@ -27,49 +28,76 @@ const SearchFilter = ({ search, startDate, endDate }) => {
     setSearchText("");
     setStart("");
     setEnd("");
-    router.push("/tutors");
+
+    router.push("/tutor");
   };
 
   return (
-    <form
-      onSubmit={handleSearch}
-      className="container mx-auto px-4 flex flex-col md:flex-row gap-3 items-center justify-center"
-    >
-      <input
-        type="text"
-        placeholder="Search tutor name..."
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
-        className="border px-4 py-3 rounded-md w-full md:w-1/3"
-      />
+    <form onSubmit={handleSearch} className="container mx-auto px-4 py-6  flex flex-col lg:flex-row gap-4 items-stretch lg:items-center justify-center">
+      <input type="text" placeholder="Search tutor name..." value={searchText} onChange={(e) => setSearchText(e.target.value)}className="border px-4 py-3 rounded-xl w-full lg:w-80outline-none"/>
 
       <input
         type="date"
         value={start}
         onChange={(e) => setStart(e.target.value)}
-        className="border px-4 py-3 rounded-md"
+        className="
+          border 
+          px-4 
+          py-3 
+          rounded-xl 
+          w-full 
+          md:w-full 
+          lg:w-auto
+        "
       />
-
+      
       <input
         type="date"
         value={end}
         onChange={(e) => setEnd(e.target.value)}
-        className="border px-4 py-3 rounded-md"
+        className="
+          border 
+          px-4 
+          py-3 
+          rounded-xl 
+          w-full 
+          md:w-full 
+          lg:w-auto
+        "
       />
 
-      <Button
-        type="submit"
-        className="bg-blue-900 text-white px-5 py-3 rounded-md hover:bg-blue-900"
-      >
-        Search
-      </Button>
+      {/* Buttons */}
+      <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
 
-      <Button
-        onClick={clearFilter}
-        className="bg-gray-300 px-5 py-3 rounded-md hover:bg-gray-400"
-      >
-        Clear
-      </Button>
+        <Button
+          type="submit"
+          className="
+            bg-blue-900 
+            text-white 
+            px-6 
+            py-3 
+            rounded-xl
+            w-full
+          "
+        >
+          Search
+        </Button>
+
+        <Button
+          type="button"
+          onClick={clearFilter}
+          className="
+            bg-gray-300 
+            px-6 
+            py-3 
+            rounded-xl
+            w-full
+          "
+        >
+          Clear
+        </Button>
+
+      </div>
     </form>
   );
 };

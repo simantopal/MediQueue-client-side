@@ -1,12 +1,17 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 
 const BookingDelete = ({bookingId}) => {
     const handleDeleteBooking = async() =>{
-        const res = await fetch(`http://localhost:5000/bookings/${bookingId}`, {
+
+        const {data:tokenData} = await authClient.token()
+
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings/${bookingId}`, {
             method: "PATCH",
             headers: {
-                "content-type" : "application/json"
+                "content-type" : "application/json",
+                authorization: `Bearer ${tokenData?.token}`
             }
         })
         const data = await res.json()
@@ -24,11 +29,11 @@ const BookingDelete = ({bookingId}) => {
                             <AlertDialog.CloseTrigger />
                             <AlertDialog.Header>
                                 <AlertDialog.Icon status="danger" />
-                                <AlertDialog.Heading>Delete Data permanently?</AlertDialog.Heading>
+                                <AlertDialog.Heading>Cancel booking permanently?</AlertDialog.Heading>
                             </AlertDialog.Header>
                             <AlertDialog.Body>
                                 <p>
-                                    This will permanently delete and all of its data. This action cannot be undone.
+                                    This will permanently cancel and all of its data. This action cannot be undone.
                                 </p>
                             </AlertDialog.Body>
                             <AlertDialog.Footer>
@@ -36,7 +41,7 @@ const BookingDelete = ({bookingId}) => {
                                     Cancel
                                 </Button>
                                 <Button onClick={handleDeleteBooking} slot="close" variant="danger">
-                                    Delete
+                                    Cancel Booking
                                 </Button>
                             </AlertDialog.Footer>
                         </AlertDialog.Dialog>

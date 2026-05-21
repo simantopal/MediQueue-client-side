@@ -1,24 +1,35 @@
 import { BookSessionModal } from '@/components/BookSessionModal';
+import { auth } from '@/lib/auth';
 import { Card, } from '@heroui/react';
+import { headers } from 'next/headers';
 import Image from 'next/image';
 import React from 'react';
 
 export const metadata = {
-  title: "All Tutor Details",
+    title: "All Tutor Details",
 };
 
 const TutorDetailsPage = async ({ params }) => {
-    const { id } = await params
-    const res = await fetch(`http://localhost:5000/tutor/${id}`)
+    const { id } = await params;
+    const { token } = await auth.api.getToken({
+        headers: await headers()
+    })
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutor/${id}`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    })
+
     const tutor = await res.json()
 
     const { tutorName, imageUrl, subject, dayAndTime, departureDate, fee, institution, location, slot, experience } = tutor;
 
-    const today = new Date();
-    const sessionDate = new Date(departureDate);
+    const today = new Date().setHours(0, 0, 0, 0);
+    const sessionDate = new Date(departureDate).setHours(0, 0, 0, 0);
 
-    const isDateAllowed = today >= sessionDate;
-    const isSlotsAvailable = slot > 0;
+    const isDateAllowed = today <= sessionDate;
+    const isSlotsAvailable = Number(slot) > 0;
 
     const canBook = isDateAllowed && isSlotsAvailable;
 
@@ -76,14 +87,16 @@ const TutorDetailsPage = async ({ params }) => {
 
                     {!canBook && (
                         <p className="text-red-500 font-medium">
-                            {!isDateAllowed
-                                ? "Booking is not available yet for this tutor"
-                                : "No available slots left"}
+                            {!isDateAllowed && !isSlotsAvailable
+                                ? "Booking not available (date not reached & no slots left)"
+                                : !isDateAllowed
+                                    ? "Booking is not available yet for this tutor"
+                                    : "No available slots left"}
                         </p>
                     )}
                     <BookSessionModal tutor={tutor}
                         disabled={!canBook}
-                         />
+                    />
                 </div>
             </Card>
         </div>

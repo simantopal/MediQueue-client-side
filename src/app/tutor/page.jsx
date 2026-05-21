@@ -13,7 +13,7 @@ const getTutors = async (search, startDate, endDate) => {
     if (endDate) params.append("endDate", endDate);
 
     const res = await fetch(
-        `http://localhost:5000/tutor?${params.toString()}`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/tutor?${params.toString()}`,
         { cache: "no-store" }
     );
 
@@ -29,7 +29,7 @@ const TutorPage = async ({ searchParams }) => {
     const tutors = await getTutors(search, startDate, endDate);
 
     return (
-        <div className="min-h-screen bg-gray-50 my-15">
+        <div className="min-h-screen my-15">
 
             <h1 className="text-center text-3xl font-bold text-blue-900 mb-3">
                 All Tutors

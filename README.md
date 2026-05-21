@@ -3,7 +3,7 @@
 MediQueue is an online tutor booking platform where students can find tutors, book sessions, and manage their learning journey easily.
 
 ## 🌐 Live Site
-https://your-live-site-url.com
+https://medi-queue-client-side.vercel.app/
 
 ## 🚀 Features
 

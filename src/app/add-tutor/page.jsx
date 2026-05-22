@@ -29,14 +29,14 @@ const AddTutorPage = () => {
 
     const formData = new FormData(e.currentTarget);
 
-    // 🔥 FIX: manual object instead of Object.fromEntries
+
     const tutor = {
         tutorName: formData.get("tutorName"),
         imageUrl: formData.get("imageUrl"),
         location: formData.get("location"),
         subject: formData.get("subject"),
 
-        // 🔥 IMPORTANT FIX (string → number)
+
         fee: Number(formData.get("fee")),
         slot: Number(formData.get("slot")),
 
@@ -62,7 +62,7 @@ const AddTutorPage = () => {
 
     if (res.ok) {
         toast.success('Tutor added successfully!');
-        e.target.reset(); // optional but good
+        e.target.reset();
     } else {
         toast.error('Failed to add tutor');
     }
@@ -70,7 +70,7 @@ const AddTutorPage = () => {
 
     return (
         <div className='container mx-auto border m-8 shadow rounded-2xl max-w-5xl'>
-            <h1 className='flex items-center justify-center font-bold text-3xl mt-5 text-blue-900'>
+            <h1 className='flex items-center justify-center font-bold text-3xl mt-5 text-indigo-500'>
                 Add Tutor
             </h1>
 

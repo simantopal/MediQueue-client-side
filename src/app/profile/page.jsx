@@ -22,7 +22,7 @@ const ProfilePage = async () => {
 
     return (
         <div className="container mx-auto my-15 px-4">
-            <div className="max-w-xl mx-auto bg-white shadow-lg rounded-2xl p-8 border">
+            <div className="max-w-xl mx-auto bg-gray-200 shadow-lg rounded-2xl p-8 border">
                 <div className="flex flex-col items-center">
                     <img
                         src={
@@ -43,17 +43,17 @@ const ProfilePage = async () => {
                 <div className="mt-10 space-y-5">
                     <div className="bg-gray-100 rounded-xl p-4">
                         <h2 className="font-semibold text-gray-700">Full Name</h2>
-                        <p className="text-lg mt-1">
+                        <p className="text-lg mt-1 text-black">
                             {user.name}
                         </p>
                     </div>
                     <div className="bg-gray-100 rounded-xl p-4">
                         <h2 className="font-semibold text-gray-700">Email Address</h2>
-                        <p className="text-lg mt-1">{user.email}</p>
+                        <p className="text-lg mt-1 text-black">{user.email}</p>
                     </div>
                     <div className="bg-gray-100 rounded-xl p-4">
                         <h2 className="font-semibold text-gray-700">User ID</h2>
-                        <p className="text-sm mt-1 break-all">
+                        <p className="text-sm mt-1 break-all text-black">
                             {user.id}
                         </p>
                     </div>

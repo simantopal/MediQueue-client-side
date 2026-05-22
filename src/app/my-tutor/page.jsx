@@ -39,7 +39,7 @@ const MyTutorsPage = async () => {
 
   return (
     <div className="my-15">
-      <h1 className="text-center font-bold text-3xl text-blue-900">My Tutors</h1>
+      <h1 className="text-center font-bold text-3xl text-indigo-500">My Tutors</h1>
 
       {
         tutors.length === 0 ? (

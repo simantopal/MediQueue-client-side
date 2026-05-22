@@ -40,60 +40,25 @@ const SearchFilter = ({ search, startDate, endDate }) => {
         type="date"
         value={start}
         onChange={(e) => setStart(e.target.value)}
-        className="
-          border 
-          px-4 
-          py-3 
-          rounded-xl 
-          w-full 
-          md:w-full 
-          lg:w-auto
-        "
-      />
+        className="border px-4 py-3 rounded-xl w-full md:w-full lg:w-auto"/>
       
       <input
         type="date"
         value={end}
         onChange={(e) => setEnd(e.target.value)}
-        className="
-          border 
-          px-4 
-          py-3 
-          rounded-xl 
-          w-full 
-          md:w-full 
-          lg:w-auto
-        "
-      />
+        className="border px-4 py-3 rounded-xl w-full md:w-full lg:w-auto"/>
 
-      {/* Buttons */}
+
       <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
 
         <Button
           type="submit"
-          className="
-            bg-blue-900 
-            text-white 
-            px-6 
-            py-3 
-            rounded-xl
-            w-full
-          "
-        >
-          Search
-        </Button>
+          className="bg-blue-900 text-white px-6 py-3 rounded-xlw-full">Search</Button>
 
         <Button
           type="button"
           onClick={clearFilter}
-          className="
-            bg-gray-300 
-            px-6 
-            py-3 
-            rounded-xl
-            w-full
-          "
-        >
+          className="bg-base-300 px-6 py-3 rounded-xl w-full">
           Clear
         </Button>
 

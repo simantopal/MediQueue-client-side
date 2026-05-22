@@ -17,7 +17,7 @@ const TutorSection = async () => {
 
   return (
     <div className="container mx-auto my-15">
-      <div className="text-3xl font-bold text-center mt-15 text-blue-900">
+      <div className="text-3xl font-bold text-center mt-15 text-indigo-500">
         Featured Tutors
       </div>
 

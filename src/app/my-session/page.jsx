@@ -31,7 +31,7 @@ const MyBookedSessionPage = async () => {
 
     return (
         <div className='my-15'>
-            <h1 className='text-center font-bold text-3xl text-blue-900'>My booking</h1>
+            <h1 className='text-center font-bold text-3xl text-indigo-500'>My booking</h1>
             {
                 bookings.length === 0 ? (
                     <div className="flex items-center justify-center py-20">
@@ -41,9 +41,9 @@ const MyBookedSessionPage = async () => {
                     </div>
                 ) : (
                     <div className='container mx-auto'>
-                        <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm bg-white text-center my-5">
+                        <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm bg-white text-center my-8">
 
-                            <table className="table w-full">
+                            <table className="table w-full [&_tbody_td]:py-1">
 
                                 <thead className="bg-gray-100 text-gray-700">
                                     <tr>
@@ -63,10 +63,10 @@ const MyBookedSessionPage = async () => {
                                                 key={booking._id}
                                                 className="hover:bg-gray-50 transition py-15"
                                             >
-                                                <td>{booking.userName}</td>
-                                                <td>{booking.userPhone}</td>
-                                                <td>{booking.tutorName}</td>
-                                                <td>{booking.userEmail}</td>
+                                                <td className='text-black'>{booking.userName}</td>
+                                                <td className='text-black'>{booking.userPhone}</td>
+                                                <td className='text-black'>{booking.tutorName}</td>
+                                                <td className='text-black'>{booking.userEmail}</td>
 
                                                 <td>
                                                     <span

@@ -1,38 +1,43 @@
-import { Moon, Sun } from '@gravity-ui/icons';
-import { Switch } from '@heroui/react';
-import React from 'react';
+'use client'
+
+import { Moon, Sun } from "@gravity-ui/icons";
+import { Switch } from "@heroui/react";
+import React, { useEffect, useState } from "react";
 
 const ThemeToggle = () => {
-const icons = {
-    darkMode: {
-      off: Moon,
-      on: Sun,
-      selectedControlClass: "",
-    },
-}
-    
+    const [lightMode, setLightMode] = useState(() => {
+        if (typeof window !== "undefined") {
+            return localStorage.getItem("theme") !== "dark";
+        }
+        return true;
+    });
+
+    useEffect(() => {
+        if (lightMode) {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("theme", "light");
+        } else {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+        }
+    }, [lightMode]);
+
+    const handleClick = () => {
+        setLightMode(prev => !prev);
+    };
+
     return (
-        <div className="flex gap-3">
-      {Object.entries(icons).map(([key, value]) => (
-        <Switch key={key} defaultSelected size="lg">
-          {({isSelected}) => (
-            <>
-              <Switch.Control className={isSelected ? value.selectedControlClass : ""}>
-                <Switch.Thumb>
-                  <Switch.Icon>
-                    {isSelected ? (
-                      <value.on className="size-3 text-inherit opacity-100" />
-                    ) : (
-                      <value.off className="size-3 text-inherit opacity-70" />
-                    )}
-                  </Switch.Icon>
-                </Switch.Thumb>
-              </Switch.Control>
-            </>
-          )}
+        <Switch
+            isSelected={lightMode}
+            onClick={handleClick}
+            size="lg"
+        >
+            {lightMode ? (
+                <Sun className="size-5" />
+            ) : (
+                <Moon className="size-5" />
+            )}
         </Switch>
-      ))}
-    </div>
     );
 };
 
